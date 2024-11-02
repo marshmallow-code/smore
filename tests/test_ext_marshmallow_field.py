@@ -211,8 +211,10 @@ def test_nested_nullable(spec_fixture):
         assert res == {"$ref": "#/definitions/Child", "x-nullable": True}
     elif version.major == 3 and version.minor < 1:
         assert res == {
-            "nullable": True,
-            "allOf": [{"$ref": "#/components/schemas/Child"}],
+            "anyOf": [
+                {"type": "object", "nullable": True},
+                {"$ref": "#/components/schemas/Child"},
+            ]
         }
     else:
         assert res == {
