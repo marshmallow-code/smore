@@ -84,3 +84,4 @@ Contributors (chronological)
 - Christian Proud `@cjproud <https://github.com/cjproud>`_
 - `<https://github.com/kolditz-senec >`_
 - Theron Luhn `@luhn <https://github.com/luhn>`_
+- Robert Shepley `@ShepleySound <https://github.com/ShepleySound>`_
