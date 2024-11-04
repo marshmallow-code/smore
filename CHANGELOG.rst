@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+6.7.1 (2024-11-04)
+******************
+
+Bug fixes:
+
+- Fix rendering of nullable nested fields in 3.0 spec (:issue:`952`).
+  Thanks :user:`ShepleySound` for the catch and patch.
+
 6.7.0 (2024-10-20)
 ******************
 
