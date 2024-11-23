@@ -387,10 +387,13 @@ def test_nullable_enum_returns_only_one_none(spec_fixture):
     assert ret["enum"] == [1, 2, None]
 
 
+@pytest.mark.parametrize("spec_fixture", ("2.0", "3.0.0", "3.1.0"), indirect=True)
 def test_field2property_nested_spec_metadatas(spec_fixture):
-    spec_fixture.spec.components.schema("Category", schema=CategorySchema)
+    class Child(Schema):
+        name = fields.Str()
+
     category = fields.Nested(
-        CategorySchema,
+        Child,
         metadata={
             "description": "A category",
             "invalid_property": "not in the result",
@@ -398,11 +401,29 @@ def test_field2property_nested_spec_metadatas(spec_fixture):
         },
     )
     result = spec_fixture.openapi.field2property(category)
-    assert result == {
-        "allOf": [build_ref(spec_fixture.spec, "schema", "Category")],
-        "description": "A category",
-        "x-extension": "A great extension",
-    }
+    version = spec_fixture.openapi.openapi_version
+    if version.major < 3:
+        assert result == {
+            "allOf": [
+                {"$ref": "#/definitions/Child"},
+            ],
+            "description": "A category",
+            "x-extension": "A great extension",
+        }
+    elif version.minor < 1:
+        assert result == {
+            "allOf": [
+                {"$ref": "#/components/schemas/Child"},
+            ],
+            "description": "A category",
+            "x-extension": "A great extension",
+        }
+    else:
+        assert result == {
+            "$ref": "#/components/schemas/Child",
+            "description": "A category",
+            "x-extension": "A great extension",
+        }
 
 
 def test_field2property_nested_spec(spec_fixture):
