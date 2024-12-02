@@ -223,6 +223,42 @@ def test_nested_nullable(spec_fixture):
 
 
 @pytest.mark.parametrize("spec_fixture", ("2.0", "3.0.0", "3.1.0"), indirect=True)
+def test_nested_nullable_with_metadata(spec_fixture):
+    # Regression test for https://github.com/marshmallow-code/apispec/issues/955
+    class Child(Schema):
+        name = fields.Str()
+
+    field = fields.Nested(
+        Child,
+        allow_none=True,
+        metadata={"description": "foo"},
+    )
+    res = spec_fixture.openapi.field2property(field)
+    version = spec_fixture.openapi.openapi_version
+    if version.major < 3:
+        assert res == {
+            "allOf": [
+                {"$ref": "#/definitions/Child"},
+            ],
+            "x-nullable": True,
+            "description": "foo",
+        }
+    elif version.major == 3 and version.minor < 1:
+        assert res == {
+            "anyOf": [
+                {"$ref": "#/components/schemas/Child"},
+                {"type": "object", "nullable": True},
+            ],
+            "description": "foo",
+        }
+    else:
+        assert res == {
+            "anyOf": [{"$ref": "#/components/schemas/Child"}, {"type": "null"}],
+            "description": "foo",
+        }
+
+
+@pytest.mark.parametrize("spec_fixture", ("2.0", "3.0.0", "3.1.0"), indirect=True)
 def test_nullable_pluck(spec_fixture):
     class Example(Schema):
         name = fields.Str()

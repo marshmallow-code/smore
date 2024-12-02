@@ -306,6 +306,11 @@ class FieldConverterMixin:
                         {"type": "object", "nullable": True},
                         {"$ref": ret.pop("$ref")},
                     ]
+                elif "allOf" in ret:
+                    attributes["anyOf"] = [
+                        *ret.pop("allOf"),
+                        {"type": "object", "nullable": True},
+                    ]
                 else:
                     attributes["nullable"] = True
             else:
