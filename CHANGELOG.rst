@@ -1,6 +1,19 @@
 Changelog
 ---------
 
+6.8.0 (2024-12-02)
+******************
+
+Features:
+
+- Allow properties on $ref objects for OpenAPI 3.1 (:pr:`958`).
+  Thanks :user:`luhn` for the PR.
+
+Bug fixes:
+
+- Fix nullable nested schemas with metadata in OpenAPI 3.0 (:issue:`955`).
+  Thanks :user:`luhn` for the catch and patch.
+
 6.7.1 (2024-11-04)
 ******************
 
