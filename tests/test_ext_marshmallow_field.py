@@ -438,25 +438,15 @@ def test_field2property_nested_spec_metadatas(spec_fixture):
     )
     result = spec_fixture.openapi.field2property(category)
     version = spec_fixture.openapi.openapi_version
-    if version.major < 3:
+    if version.major < 3 or version.minor < 1:
         assert result == {
-            "allOf": [
-                {"$ref": "#/definitions/Child"},
-            ],
-            "description": "A category",
-            "x-extension": "A great extension",
-        }
-    elif version.minor < 1:
-        assert result == {
-            "allOf": [
-                {"$ref": "#/components/schemas/Child"},
-            ],
+            "allOf": [build_ref(spec_fixture.spec, "schema", "Child")],
             "description": "A category",
             "x-extension": "A great extension",
         }
     else:
         assert result == {
-            "$ref": "#/components/schemas/Child",
+            **build_ref(spec_fixture.spec, "schema", "Child"),
             "description": "A category",
             "x-extension": "A great extension",
         }
