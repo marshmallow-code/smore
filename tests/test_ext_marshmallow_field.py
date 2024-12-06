@@ -200,6 +200,20 @@ def test_field_with_allow_none(spec_fixture):
 
 
 @pytest.mark.parametrize("spec_fixture", ("2.0", "3.0.0", "3.1.0"), indirect=True)
+@pytest.mark.parametrize("field_class", [fields.Field, fields.Raw])
+def test_nullable_field_with_no_type(spec_fixture, field_class):
+    field = field_class(allow_none=True)
+    res = spec_fixture.openapi.field2property(field)
+    if spec_fixture.openapi.openapi_version.major < 3:
+        assert res["x-nullable"] is True
+    elif spec_fixture.openapi.openapi_version.minor < 1:
+        assert res["nullable"] is True
+    else:
+        assert "nullable" not in res
+        assert "type" not in res
+
+
+@pytest.mark.parametrize("spec_fixture", ("2.0", "3.0.0", "3.1.0"), indirect=True)
 def test_nested_nullable(spec_fixture):
     class Child(Schema):
         name = fields.Str()

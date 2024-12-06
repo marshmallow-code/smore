@@ -106,3 +106,6 @@ venv.bak/
 
 # ruff
 .ruff_cache/
+
+# PyCharm
+.idea
