@@ -10,29 +10,14 @@ on:
 jobs:
   tests:
     name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         include:
-          - {
-              name: "3.9-ma3",
-              python: "3.9",
-              os: ubuntu-latest,
-              tox: py39-marshmallow3,
-            }
-          - {
-              name: "3.13-ma3",
-              python: "3.13",
-              os: ubuntu-latest,
-              tox: py313-marshmallow3,
-            }
-          - {
-              name: "3.13-madev",
-              python: "3.13",
-              os: ubuntu-latest,
-              tox: py313-marshmallowdev,
-            }
+          - { name: "3.9-ma3", python: "3.9", tox: py39-marshmallow3 }
+          - { name: "3.13-ma3", python: "3.13", tox: py313-marshmallow3 }
+          - { name: "3.13-madev", python: "3.13", tox: py313-marshmallowdev }
     steps:
       - uses: actions/checkout@v4.2.2
       - uses: actions/setup-python@v5

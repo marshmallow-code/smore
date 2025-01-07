@@ -2,7 +2,7 @@
 apispec
 *******
 
-|pypi| |build-status| |docs| |marshmallow3| |openapi|
+|pypi| |build-status| |docs| |marshmallow-support| |openapi|
 
 .. |pypi| image:: https://badgen.net/pypi/v/apispec
     :target: https://pypi.org/project/apispec/
@@ -16,9 +16,9 @@ apispec
    :target: https://apispec.readthedocs.io/
    :alt: Documentation
 
-.. |marshmallow3| image:: https://badgen.net/badge/marshmallow/3?list=1
+.. |marshmallow-support| image:: https://badgen.net/badge/marshmallow/3,4?list=1
     :target: https://marshmallow.readthedocs.io/en/latest/upgrading.html
-    :alt: marshmallow 3 only
+    :alt: marshmallow 3|4 compatible
 
 .. |openapi| image:: https://badgen.net/badge/OAS/2,3?list=1&color=cyan
     :target: https://github.com/OAI/OpenAPI-Specification

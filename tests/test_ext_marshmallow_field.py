@@ -19,7 +19,6 @@ def test_field2choices_preserving_order(openapi):
     ("FieldClass", "jsontype"),
     [
         (fields.Integer, "integer"),
-        (fields.Number, "number"),
         (fields.Float, "number"),
         (fields.String, "string"),
         (fields.Str, "string"),
@@ -46,9 +45,8 @@ def test_field2property_type(FieldClass, jsontype, spec_fixture):
     assert res["type"] == jsontype
 
 
-@pytest.mark.parametrize("FieldClass", [fields.Field, fields.Raw])
-def test_field2property_no_type_(FieldClass, spec_fixture):
-    field = FieldClass()
+def test_field2property_no_type(spec_fixture):
+    field = fields.Raw()
     res = spec_fixture.openapi.field2property(field)
     assert "type" not in res
 
@@ -305,14 +303,14 @@ def test_field_with_load_only(spec_fixture):
 
 
 def test_field_with_range_no_type(spec_fixture):
-    field = fields.Field(validate=validate.Range(min=1, max=10))
+    field = fields.Raw(validate=validate.Range(min=1, max=10))
     res = spec_fixture.openapi.field2property(field)
     assert res["x-minimum"] == 1
     assert res["x-maximum"] == 10
     assert "type" not in res
 
 
-@pytest.mark.parametrize("field", (fields.Number, fields.Integer))
+@pytest.mark.parametrize("field", (fields.Float, fields.Integer))
 def test_field_with_range_string_type(spec_fixture, field):
     field = field(validate=validate.Range(min=1, max=10))
     res = spec_fixture.openapi.field2property(field)

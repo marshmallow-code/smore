@@ -26,7 +26,7 @@ def resolve_schema_instance(
         return schema()
     if isinstance(schema, marshmallow.Schema):
         return schema
-    return marshmallow.class_registry.get_class(schema)()  # type: ignore
+    return marshmallow.class_registry.get_class(schema)()
 
 
 def resolve_schema_cls(
