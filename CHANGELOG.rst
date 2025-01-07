@@ -6,7 +6,7 @@ Changelog
 
 Support:
 
-- Support marshmallow 4.
+- Support marshmallow 4 (:pr:`963`).
 
 6.8.0 (2024-12-02)
 ******************
