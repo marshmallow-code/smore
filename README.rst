@@ -2,7 +2,7 @@
 apispec
 *******
 
-|pypi| |build-status| |docs| |marshmallow3| |openapi|
+|pypi| |build-status| |docs| |marshmallow-support| |openapi|
 
 .. |pypi| image:: https://badgen.net/pypi/v/apispec
     :target: https://pypi.org/project/apispec/
