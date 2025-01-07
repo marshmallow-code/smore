@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+6.9.0 (unreleased)
+******************
+
+Support:
+
+- Support marshmallow 4 (:pr:`963`).
+
 6.8.0 (2024-12-02)
 ******************
 
