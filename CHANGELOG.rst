@@ -1,8 +1,13 @@
 Changelog
 ---------
 
-6.9.0 (unreleased)
+6.8.1 (unreleased)
 ******************
+
+Bug fixes:
+
+- Fix handling of nullable Raw fields for OAS 3.1.0 (:issue:`960`).
+  Thanks :user:`tsokalski` for reporting and fixing.
 
 Support:
 
