@@ -20,4 +20,4 @@ repos:
   rev: v1.14.1
   hooks:
   - id: mypy
-    additional_dependencies: ["marshmallow>=3,<5", "types-PyYAML"]
+    additional_dependencies: ["marshmallow>=3.24.1,<5", "types-PyYAML"]
