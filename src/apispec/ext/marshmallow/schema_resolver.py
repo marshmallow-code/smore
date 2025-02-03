@@ -136,7 +136,9 @@ class SchemaResolver:
                     "in": "query",
                     "name": "pet",
                     "content": {
-                        "application/json": {"schema": {"$ref": "#/components/schemas/Pet"}}
+                        "application/json": {
+                            "schema": {"$ref": "#/components/schemas/Pet"}
+                        }
                     },
                 }
             ]
@@ -209,7 +211,9 @@ class SchemaResolver:
             {
                 "description": "user to add to the system",
                 "content": {
-                    "application/json": {"schema": {"$ref": "#/components/schemas/User"}}
+                    "application/json": {
+                        "schema": {"$ref": "#/components/schemas/User"}
+                    }
                 },
             }
 
@@ -261,7 +265,10 @@ class SchemaResolver:
             {"type": "array", "items": {"$ref": "#/components/schemas/Pet"}}
 
             # Input
-            {"type": "object", "properties": {"pet": "PetSchcema", "user": "UserSchema"}}
+            {
+                "type": "object",
+                "properties": {"pet": "PetSchcema", "user": "UserSchema"},
+            }
 
             # Output
             {

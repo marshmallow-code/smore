@@ -167,9 +167,9 @@ class OpenAPIConverter(FieldConverterMixin):
                 param["description"] = description
             return [param]
 
-        assert not getattr(
-            schema, "many", False
-        ), "Schemas with many=True are only supported for 'json' location (aka 'in: body')"
+        assert not getattr(schema, "many", False), (
+            "Schemas with many=True are only supported for 'json' location (aka 'in: body')"
+        )
 
         fields = get_fields(schema, exclude_dump_only=True)
 
